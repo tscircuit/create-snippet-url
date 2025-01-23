@@ -1,5 +1,5 @@
 import { test, expect } from "bun:test"
-import { createSnippetUrl } from "lib"
+import { createSnippetUrl, getUncompressedSnippetString, getBase64PoundSnippetString } from "lib"
 
 declare module "bun:test" {
   interface Matchers<T = unknown> {
