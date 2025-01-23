@@ -1,13 +1,22 @@
 # @tscircuit/create-snippet-url
 
-Open tscircuit code on snippets (snippets url creator)
+Open tscircuit code on snippets (snippets URL creator)
+
+## Installation
+
+```bash
+bun add @tscircuit/create-snippet-url
+```
 
 ## Usage
+
+### Basic Usage
 
 ```ts
 import { createSnippetUrl } from "@tscircuit/create-snippet-url"
 
-createSnippetUrl(`
+// Create a board with a resistor
+const url = createSnippetUrl(`
 export default () => (
   <board width="10mm" height="10mm">
     <resistor
@@ -20,5 +29,4 @@ export default () => (
   </board>
 )
 `)
-// https://tscircuit.com/editor?&snippet_type=board#data:application/gzip;base64,H4sIALJ5eWcAA0XOvQ7CIBDA8b1PcWFqp1J1LDyEkysFKkT5CJzRxPju0pam4+/yv9zpTwwJQelZvJ4IbQeMQ9sAjFMQScHbKjSMDNQ5Akbbu8EqXqKSJZ1txpBWAWwUXuqSPUidziFgTNaXXXqhp33shSvZddidpbmx7/lXGeV0sF/ujf36FW+6P0OaJ9u4AAAA
 ```
