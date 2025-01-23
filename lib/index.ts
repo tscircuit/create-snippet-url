@@ -1,5 +1,5 @@
-import { gzipSync, strToU8 } from "fflate"
-import { bytesToBase64 } from "./bytesToBase64"
+import { gzipSync, gunzipSync, strToU8, strFromU8 } from "fflate"
+import { base64ToBytes, bytesToBase64 } from "./bytesToBase64"
 
 export function getCompressedBase64SnippetString(text: string) {
   // Compress the input string
@@ -14,6 +14,15 @@ export function getCompressedBase64SnippetString(text: string) {
 export function getBase64PoundSnippetString(text: string) {
   const base64Data = getCompressedBase64SnippetString(text)
   return `#data:application/gzip;base64,${base64Data}`
+}
+
+export function getUncompressedSnippetString(
+  base64CompressedSnippetString: string,
+) {
+  const base64Data = base64CompressedSnippetString.split(",").pop()
+  const compressedData = base64ToBytes(base64Data!)
+  const uncompressedData = gunzipSync(compressedData)
+  return strFromU8(uncompressedData)
 }
 
 export function createSnippetUrl(text: string, snippet_type?: string): string {
