@@ -25,6 +25,14 @@ export function getUncompressedSnippetString(
   return strFromU8(uncompressedData)
 }
 
+export function createSvgUrl(
+  tscircuitCode: string,
+  svgType: "pcb" | "schematic",
+) {
+  const base64Data = getCompressedBase64SnippetString(tscircuitCode)
+  return `https://svg.tscircuit.com/?svg_type=${svgType}&code=${encodeURIComponent(base64Data)}`
+}
+
 export function createSnippetUrl(text: string, snippet_type?: string): string {
   // Construct the URL
   const typeParam = snippet_type ? `&snippet_type=${snippet_type}` : ""
