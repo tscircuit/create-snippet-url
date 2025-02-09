@@ -33,6 +33,14 @@ export function createSvgUrl(
   return `https://svg.tscircuit.com/?svg_type=${svgType}&code=${encodeURIComponent(base64Data)}`
 }
 
+export function createBrowserPreviewUrl(
+  tscircuitCode: string,
+  view?: "pcb" | "schematic" | "3d",
+) {
+  const base64Data = getCompressedBase64SnippetString(tscircuitCode)
+  return `https://browser-preview.tscircuit.com/?view=${view}&code=${encodeURIComponent(base64Data)}`
+}
+
 export function createPngUrl(
   tscircuitCode: string,
   view: "pcb" | "schematic" | "3d",
