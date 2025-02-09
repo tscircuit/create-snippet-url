@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "build": "tsup-node lib/index.ts --dts --format esm",
-    "format": "biome format --write ."
+    "format": "biome format --write .",
+    "format:check": "biome format ."
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
