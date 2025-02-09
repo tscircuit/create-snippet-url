@@ -17,5 +17,5 @@ pcbX={3} />
 
   const compressed = getBase64PoundSnippetString(originalText)
   const uncompressed = getUncompressedSnippetString(compressed)
-  expect(uncompressed).toEqual(originalText)
+  expect(uncompressed).toEqual(originalText.trim())
 })

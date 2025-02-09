@@ -21,6 +21,6 @@ export default () => (
 `)
 
   expect(url).toMatchInlineSnapshot(
-    `"https://tscircuit.com/editor?#data:application/gzip;base64,H4sIAIcAqGcAAy2NTQ7CIBhE95xiwqpdtVWXhUO4ckuBClF+Ap/RxHh30Xb3JvMyw+wrp0IwdlWPO6HrISQ6BsxLUsXg6Q05wacxBA5n/dXRnmSTmlZs9ZVSwQYqatuEG8eaEuXiY/PH03jgiCq06jxxVO0u4n38IOtlg+G3Ng//T8l69gUyPWjAmAAAAA=="`,
+    `"https://tscircuit.com/editor?#data:application/gzip;base64,H4sIAJsBqGcAAy2NTQ7CIBhE9z3FhFW7KlWXhUO4ckuBClF+Ap/RxHh30Xb3JvMyY185FYKxq3rcCf0AIdF3wLwkVQye3pATbOIhMDjrr472JJvUtGKrr5QKNlBR2ybcGNaUKBcfm89P/MAQVWjVeWKo2l3E+/hB1ssG429tHv+fshu+lSYxzJYAAAA="`,
   )
 })

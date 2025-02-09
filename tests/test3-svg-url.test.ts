@@ -14,6 +14,6 @@ export default () => (
   )
 
   expect(url).toMatchInlineSnapshot(
-    `"https://svg.tscircuit.com/?svg_type=pcb&code=H4sIAIcAqGcAAy2NTQ7CIBhE95xiwqpdtVWXhUO4ckuBClF%2BAp%2FRxHh30Xb3JvMyw%2Bwrp0IwdlWPO6HrISQ6BsxLUsXg6Q05wacxBA5n%2FdXRnmSTmlZs9ZVSwQYqatuEG8eaEuXiY%2FPH03jgiCq06jxxVO0u4n38IOtlg%2BG3Ng%2F%2FT8l69gUyPWjAmAAAAA%3D%3D"`,
+    `"https://svg.tscircuit.com/?svg_type=pcb&code=H4sIAJsBqGcAAy2NTQ7CIBhE9z3FhFW7KlWXhUO4ckuBClF%2BAp%2FRxHh30Xb3JvMyY185FYKxq3rcCf0AIdF3wLwkVQye3pATbOIhMDjrr472JJvUtGKrr5QKNlBR2ybcGNaUKBcfm89P%2FMAQVWjVeWKo2l3E%2B%2FhB1ssG429tHv%2Bfshu%2BlSYxzJYAAAA%3D"`,
   )
 })
