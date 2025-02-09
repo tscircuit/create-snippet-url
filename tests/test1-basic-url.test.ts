@@ -1,5 +1,9 @@
 import { test, expect } from "bun:test"
-import { createSnippetUrl, getUncompressedSnippetString, getBase64PoundSnippetString } from "lib"
+import {
+  createSnippetUrl,
+  getUncompressedSnippetString,
+  getBase64PoundSnippetString,
+} from "lib"
 
 declare module "bun:test" {
   interface Matchers<T = unknown> {
@@ -16,5 +20,7 @@ export default () => (
 )
 `)
 
-  expect(url).toMatchInlineSnapshot(`"https://tscircuit.com/editor?#data:application/gzip;base64,H4sIAMaEkmcAAy2NTQ7CIBhE95xiwqpdtVWXhUO4ckuBClF+Ap/RxHh30Xb3JvMyw+wrp0IwdlWPO6HrISQ6BsxLUsXg6Q05wacxBA5n/dXRnmSTmlZs9ZVSwQYqatuEG8eaEuXiY/PH03jgiCq06jxxVO0u4n38IOtlg+G3Ng//T8l69gUyPWjAmAAAAA=="`)
+  expect(url).toMatchInlineSnapshot(
+    `"https://tscircuit.com/editor?#data:application/gzip;base64,H4sIAMaEkmcAAy2NTQ7CIBhE95xiwqpdtVWXhUO4ckuBClF+Ap/RxHh30Xb3JvMyw+wrp0IwdlWPO6HrISQ6BsxLUsXg6Q05wacxBA5n/dXRnmSTmlZs9ZVSwQYqatuEG8eaEuXiY/PH03jgiCq06jxxVO0u4n38IOtlg+G3Ng//T8l69gUyPWjAmAAAAA=="`,
+  )
 })
