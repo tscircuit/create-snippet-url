@@ -45,7 +45,7 @@ export default () => (
   </board>
 )
 `,
-  "pcb" // or "schematic" for schematic view
+  "pcb" // or "schematic", "3d", or "pinout"
 )
 
 // Returns URL pointing to https://svg.tscircuit.com
