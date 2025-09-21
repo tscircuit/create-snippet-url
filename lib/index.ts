@@ -29,7 +29,7 @@ export function getUncompressedSnippetString(
 
 export function createSvgUrl(
   tscircuitCode: string,
-  svgType: "pcb" | "schematic" | "3d",
+  svgType: "pcb" | "schematic" | "3d" | "pinout",
 ) {
   const base64Data = getCompressedBase64SnippetString(tscircuitCode)
   return `https://svg.tscircuit.com/?svg_type=${svgType}&code=${encodeURIComponent(base64Data)}`
