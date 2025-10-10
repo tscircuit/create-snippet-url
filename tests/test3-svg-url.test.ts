@@ -32,8 +32,9 @@ test("create svg url using fs map", () => {
   const fsMapParam = parsed.searchParams.get("fs_map")
   expect(fsMapParam).not.toBeNull()
 
+  const encodedFsMap = Buffer.from(fsMapParam!, "base64")
   const decodedFsMap = JSON.parse(
-    strFromU8(gunzipSync(Buffer.from(fsMapParam!, "base64"))),
+    strFromU8(gunzipSync(Uint8Array.from(encodedFsMap))),
   )
 
   expect(decodedFsMap).toEqual({
