@@ -50,3 +50,24 @@ export default () => (
 
 // Returns URL pointing to https://svg.tscircuit.com
 ```
+
+#### Using an fsMap
+
+```ts
+import { createSvgUrl } from "@tscircuit/create-snippet-url"
+
+const svgUrl = createSvgUrl(
+  {
+    "index.tsx": "export default () => <board />",
+    "App.tsx": "export default () => <board />",
+  },
+  "schematic",
+  {
+    entrypoint: "App.tsx",
+    format: "png",
+    pngWidth: 1200,
+  },
+)
+
+// Returns a png URL that renders the provided fsMap on svg.tscircuit.com
+```
