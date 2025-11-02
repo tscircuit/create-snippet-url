@@ -10,6 +10,7 @@ export type CreateSvgUrlOptions = {
   pngDensity?: number
   entrypoint?: string
   simulationExperimentId?: string
+  showSolderMask?: boolean
 }
 
 export function getCompressedBase64SnippetString(text: string) {
@@ -74,6 +75,9 @@ export function createSvgUrl(
   }
   if (options.simulationExperimentId) {
     search.set("simulation_experiment_id", options.simulationExperimentId)
+  }
+  if (options.showSolderMask !== undefined) {
+    search.set("show_solder_mask", options.showSolderMask ? "1" : "0")
   }
 
   const query = search.toString()
