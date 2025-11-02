@@ -1,7 +1,7 @@
 {
   "name": "@tscircuit/create-snippet-url",
   "main": "dist/index.js",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "type": "module",
   "scripts": {
     "build": "tsup-node lib/index.ts --dts --format esm",
