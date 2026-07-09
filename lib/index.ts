@@ -41,7 +41,7 @@ export function getUncompressedSnippetString(
 
 export function createSvgUrl(
   snippetOrFsMap: string | FsMap,
-  svgType: "pcb" | "schematic" | "3d" | "pinout" | "schsim",
+  svgType: "pcb" | "schematic" | "3d" | "pinout" | "schsim" | "sim",
   options: CreateSvgUrlOptions = {},
 ) {
   const search = new URLSearchParams()
