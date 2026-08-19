@@ -2,6 +2,10 @@
   "name": "@tscircuit/create-snippet-url",
   "main": "dist/index.js",
   "version": "0.0.15",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tscircuit/create-snippet-url.git"
+  },
   "type": "module",
   "scripts": {
     "build": "tsup-node lib/index.ts --dts --format esm",
