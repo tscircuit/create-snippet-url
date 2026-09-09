@@ -154,6 +154,51 @@ export default () => (
   )
 })
 
+test("create assembly svg url", () => {
+  const url = createSvgUrl(
+    `
+export default () => (
+  <board width="10mm" height="10mm">
+    <resistor resistance="1k" footprint="0402" name="R1" schX={3} pcbX={3} />
+  </board>
+)
+`,
+    "assembly",
+  )
+
+  expect(url).toMatchInlineSnapshot(
+    `"https://svg.tscircuit.com/?svg_type=assembly&code=H4sIAJsBqGcAAy2NTQ7CIBhE9z3FhFW7KlWXhUO4ckuBClF%2BAp%2FRxHh30Xb3JvMyY185FYKxq3rcCf0AIdF3wLwkVQye3pATbOIhMDjrr472JJvUtGKrr5QKNlBR2ybcGNaUKBcfm89P%2FMAQVWjVeWKo2l3E%2B%2FhB1ssG429tHv%2Bfshu%2BlSYxzJYAAAA%3D"`,
+  )
+})
+
+test("create png url accepts pinout and assembly views", () => {
+  const pinout = createPngUrl(
+    `
+export default () => (
+  <board width="10mm" height="10mm">
+    <resistor resistance="1k" footprint="0402" name="R1" schX={3} pcbX={3} />
+  </board>
+)
+`,
+    "pinout",
+  )
+  const assembly = createPngUrl(
+    `
+export default () => (
+  <board width="10mm" height="10mm">
+    <resistor resistance="1k" footprint="0402" name="R1" schX={3} pcbX={3} />
+  </board>
+)
+`,
+    "assembly",
+  )
+
+  expect(new URL(pinout).searchParams.get("svg_type")).toBe("pinout")
+  expect(new URL(pinout).searchParams.get("format")).toBe("png")
+  expect(new URL(assembly).searchParams.get("svg_type")).toBe("assembly")
+  expect(new URL(assembly).searchParams.get("format")).toBe("png")
+})
+
 test("create schsim svg url with simulation experiment id", () => {
   const url = createSvgUrl(
     `
