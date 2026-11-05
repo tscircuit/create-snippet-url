@@ -1,5 +1,12 @@
 export function bytesToBase64(bytes: Uint8Array): string {
-  const binString = String.fromCodePoint(...bytes)
+  let binString = ""
+  // Bound each argument list so large compressed snippets do not overflow it.
+  const chunkSize = 32768
+  for (let offset = 0; offset < bytes.length; offset += chunkSize) {
+    binString += String.fromCodePoint(
+      ...bytes.subarray(offset, offset + chunkSize),
+    )
+  }
   return btoa(binString)
 }
 
