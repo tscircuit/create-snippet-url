@@ -3,6 +3,15 @@ import { base64ToBytes, bytesToBase64 } from "./bytesToBase64"
 
 export type FsMap = Record<string, string>
 
+export type SvgType =
+  | "pcb"
+  | "schematic"
+  | "assembly"
+  | "3d"
+  | "pinout"
+  | "schsim"
+  | "sim"
+
 export type CreateSvgUrlOptions = {
   format?: "svg" | "png"
   pngWidth?: number
@@ -41,7 +50,7 @@ export function getUncompressedSnippetString(
 
 export function createSvgUrl(
   snippetOrFsMap: string | FsMap,
-  svgType: "pcb" | "schematic" | "3d" | "pinout" | "schsim" | "sim",
+  svgType: SvgType,
   options: CreateSvgUrlOptions = {},
 ) {
   const search = new URLSearchParams()
@@ -86,17 +95,18 @@ export function createSvgUrl(
 
 export function createBrowserPreviewUrl(
   tscircuitCode: string,
-  view?: "pcb" | "schematic" | "3d",
+  view?: "pcb" | "schematic" | "3d" | "assembly",
 ) {
   const base64Data = getCompressedBase64SnippetString(tscircuitCode)
   return `https://browser-preview.tscircuit.com/?view=${view}&code=${encodeURIComponent(base64Data)}`
 }
 
 export function createPngUrl(
-  tscircuitCode: string,
-  view: "pcb" | "schematic" | "3d",
+  tscircuitCode: string | FsMap,
+  view: SvgType,
+  options: Omit<CreateSvgUrlOptions, "format"> = {},
 ) {
-  return createSvgUrl(tscircuitCode, view, { format: "png" })
+  return createSvgUrl(tscircuitCode, view, { ...options, format: "png" })
 }
 
 export function createSnippetUrl(text: string, snippet_type?: string): string {
