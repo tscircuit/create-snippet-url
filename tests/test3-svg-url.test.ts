@@ -1,5 +1,5 @@
 import { test, expect } from "bun:test"
-import { createPngUrl, createSvgUrl } from "lib"
+import { createBrowserPreviewUrl, createPngUrl, createSvgUrl } from "lib"
 import { gunzipSync, strFromU8 } from "fflate"
 
 test("create pcb svg url", () => {
@@ -171,4 +171,31 @@ export default () => (
 
   const parsed = new URL(url)
   expect(parsed.searchParams.get("simulation_experiment_id")).toBe("my-exp-1")
+})
+
+test("create assembly svg, png, and browser preview urls", () => {
+  const code = `
+export default () => (
+  <board width="10mm" height="10mm">
+    <resistor resistance="1k" footprint="0402" name="R1" schX={3} pcbX={3} />
+  </board>
+)
+`
+  const svgUrl = createSvgUrl(code, "assembly")
+  expect(svgUrl).toMatchInlineSnapshot(
+    `"https://svg.tscircuit.com/?svg_type=assembly&code=H4sIAJsBqGcAAy2NTQ7CIBhE9z3FhFW7KlWXhUO4ckuBClF%2BAp%2FRxHh30Xb3JvMyY185FYKxq3rcCf0AIdF3wLwkVQye3pATbOIhMDjrr472JJvUtGKrr5QKNlBR2ybcGNaUKBcfm89P%2FMAQVWjVeWKo2l3E%2B%2FhB1ssG429tHv%2Bfshu%2BlSYxzJYAAAA%3D"`,
+  )
+
+  const pngUrl = createPngUrl(code, "assembly", { pngWidth: 640 })
+  const parsedPng = new URL(pngUrl)
+  expect(parsedPng.origin).toBe("https://svg.tscircuit.com")
+  expect(parsedPng.searchParams.get("svg_type")).toBe("assembly")
+  expect(parsedPng.searchParams.get("format")).toBe("png")
+  expect(parsedPng.searchParams.get("png_width")).toBe("640")
+
+  const previewUrl = createBrowserPreviewUrl(code, "assembly")
+  const parsedPreview = new URL(previewUrl)
+  expect(parsedPreview.origin).toBe("https://browser-preview.tscircuit.com")
+  expect(parsedPreview.searchParams.get("view")).toBe("assembly")
+  expect(parsedPreview.searchParams.get("code")).not.toBeNull()
 })
