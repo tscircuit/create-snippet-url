@@ -39,9 +39,22 @@ export function getUncompressedSnippetString(
   return strFromU8(uncompressedData)
 }
 
+export type SvgType =
+  | "pcb"
+  | "schematic"
+  | "assembly"
+  | "3d"
+  | "pinout"
+  | "schsim"
+  | "sim"
+
+export type PngView = "pcb" | "schematic" | "assembly" | "3d" | "pinout"
+
+export type BrowserPreviewView = "pcb" | "schematic" | "assembly" | "3d"
+
 export function createSvgUrl(
   snippetOrFsMap: string | FsMap,
-  svgType: "pcb" | "schematic" | "3d" | "pinout" | "schsim" | "sim",
+  svgType: SvgType,
   options: CreateSvgUrlOptions = {},
 ) {
   const search = new URLSearchParams()
@@ -86,17 +99,19 @@ export function createSvgUrl(
 
 export function createBrowserPreviewUrl(
   tscircuitCode: string,
-  view?: "pcb" | "schematic" | "3d",
+  view?: BrowserPreviewView,
 ) {
   const base64Data = getCompressedBase64SnippetString(tscircuitCode)
-  return `https://browser-preview.tscircuit.com/?view=${view}&code=${encodeURIComponent(base64Data)}`
+  const viewParam = view ? `view=${view}&` : ""
+  return `https://browser-preview.tscircuit.com/?${viewParam}code=${encodeURIComponent(base64Data)}`
 }
 
 export function createPngUrl(
-  tscircuitCode: string,
-  view: "pcb" | "schematic" | "3d",
+  tscircuitCode: string | FsMap,
+  view: PngView,
+  options: Omit<CreateSvgUrlOptions, "format"> = {},
 ) {
-  return createSvgUrl(tscircuitCode, view, { format: "png" })
+  return createSvgUrl(tscircuitCode, view, { ...options, format: "png" })
 }
 
 export function createSnippetUrl(text: string, snippet_type?: string): string {
